@@ -1,23 +1,10 @@
-import nextra from 'nextra';
-
-// Set up Nextra with its configuration
-const withNextra = nextra({
-  // ... Add Nextra-specific options here
-  defaultShowCopyCode: true,
-  codeHighlight: true,
-  readingTime: true,
-  staticImage: true,
-  latex: true,
-  search: {
-    codeblocks: true,
-  },
-});
+import { createMDX } from 'fumadocs-mdx/next';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-// Export the final Next.js config with Nextra included
-export default withNextra({
-  // ... Add regular Next.js options here
+/** @type {import('next').NextConfig} */
+const config = {
+  reactStrictMode: true,
   output: 'export',
   basePath,
   assetPrefix: basePath,
@@ -25,4 +12,16 @@ export default withNextra({
   images: {
     unoptimized: true,
   },
-});
+  async rewrites() {
+    return [
+      {
+        source: '/docs/:path*.mdx',
+        destination: '/llms.mdx/docs/:path*',
+      },
+    ];
+  },
+};
+
+const withMDX = createMDX({});
+
+export default withMDX(config);
