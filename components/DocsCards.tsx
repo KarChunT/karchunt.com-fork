@@ -24,7 +24,9 @@ export function DocsCards() {
       <div>
         Here is the graph of all the documentation. <br />
         You can click on the nodes to navigate to the documentation.
-        <GraphView graph={buildGraph()} />
+        <div className="mt-4">
+          <GraphView graph={buildGraph()} />
+        </div>
       </div>
     </div>
   );
