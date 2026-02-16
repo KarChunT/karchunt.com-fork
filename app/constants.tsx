@@ -3,8 +3,8 @@ import { mdiSsh } from '@mdi/js';
 import { TbNumber12Small, TbBrandDocker, TbBinaryTree } from 'react-icons/tb';
 import { FaGitAlt, FaPython } from 'react-icons/fa';
 import { BiCube } from 'react-icons/bi';
-import { SiKubernetes } from 'react-icons/si';
-import { FaPeopleArrows, FaLinux } from 'react-icons/fa6';
+import { SiKubernetes, SiAnsible } from 'react-icons/si';
+import { FaLinux } from 'react-icons/fa6';
 
 export const APP_NAME: string = 'KarChunT';
 export const APP_ICON: string = '/penguin-nobg.webp';
@@ -169,5 +169,12 @@ export const DOCUMENTATION = {
     description:
       'Linux is a family of open-source Unix-like operating systems based on the Linux kernel.',
     icon: FaLinux,
+  },
+  ansible: {
+    title: 'Ansible',
+    href: '/docs/ansible/what-is-ansible',
+    description:
+      'Ansible is an open-source automation tool that simplifies IT automation, configuration management, and application deployment.',
+    icon: SiAnsible,
   },
 };

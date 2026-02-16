@@ -1,0 +1,79 @@
+---
+title: What is Ansible?
+---
+
+## Introduction
+
+<Callout title="Ansible Documentation">
+  https://docs.ansible.com/
+</Callout>
+
+Ansible is an **open-source automation tool** that **simplifies IT automation**, **configuration management**, and **application deployment**. It is **agentless**, meaning it **does not require any special software to be installed** on the managed nodes. Instead, it **uses SSH to connect** to the managed nodes and execute tasks on them.
+
+Also, it's written in **Python** and uses **YAML** for its playbooks.
+
+## Scenario
+
+### Scenario without Ansible
+
+Imagine you have **10 servers** and you need to install **Git** on all of them. Typically, what you will do is to **SSH** into each server and run the following command:
+
+```bash
+ssh user@server1 "sudo apt update && sudo apt install git -y"
+ssh user@server2 "sudo apt update && sudo apt install git -y"
+ssh user@server3 "sudo apt update && sudo apt install git -y"
+ssh user@server4 "sudo apt update && sudo apt install git -y"
+ssh user@server5 "sudo apt update && sudo apt install git -y"
+ssh user@server6 "sudo apt update && sudo apt install git -y"
+ssh user@server7 "sudo apt update && sudo apt install git -y"
+ssh user@server8 "sudo apt update && sudo apt install git -y"
+ssh user@server9 "sudo apt update && sudo apt install git -y"
+ssh user@server10 "sudo apt update && sudo apt install git -y"
+```
+
+This is a tedious and time-consuming process. Also, it is prone to human error. If you have **100 servers**, this process will be even more time-consuming and error-prone.
+
+### Scenario with Ansible
+
+Now, let's consider the same scenario with Ansible. You can create a playbook that will install Git on all the servers. The playbook will look like this:
+
+```yaml
+- name: Install Git
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+```
+
+Now, you can run this playbook using the following command:
+
+```bash
+ansible-playbook playbook.yml
+```
+
+This will install Git on all the servers in the playbook.
+
+---
+
+<Callout type="success" title="Another Example of how you add user">
+  Without Ansible
+  ```bash
+  ssh user@server1
+  sudo adduser newuser
+  ```
+
+  With Ansible
+  ```yaml
+  - name: Add new user
+    hosts: all
+    become: yes
+    tasks:
+      - name: Add new user
+        user:
+          name: newuser
+          state: present
+  ```
+</Callout>
